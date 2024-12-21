@@ -96,21 +96,24 @@
         });
 
         calculateButton.addEventListener('click', () => {
-            const gramsInputs = document.querySelectorAll('.grams');
-            const packetsInputs = document.querySelectorAll('.packets');
-            let totalGrams = 0;
+    const gramsInputs = document.querySelectorAll('.grams');
+    const packetsInputs = document.querySelectorAll('.packets');
+    let totalGrams = 0;
 
-            gramsInputs.forEach(input => {
-                totalGrams += parseFloat(input.value) || 0;
-            });
+    gramsInputs.forEach(input => {
+        totalGrams += parseFloat(input.value) || 0;
+    });
 
-            packetsInputs.forEach(input => {
-                totalGrams += (parseFloat(input.value) || 0) * 1000;
-            });
+    packetsInputs.forEach(input => {
+        const packets = parseFloat(input.value) || 0;
+        totalGrams += packets * 1000; // Correct multiplication without adding unintended value
+    });
 
-            const totalWeightKg = totalGrams / 1000;
-            resultDiv.textContent = `Total Weight: ${totalWeightKg.toFixed(2)} kg`;
-        });
+    const totalWeightKg = totalGrams / 1000;
+    resultDiv.textContent = `Total Weight: ${totalWeightKg.toFixed(2)} kg`;
+});
+
+        
     </script>
     <script>
         if ('serviceWorker' in navigator) {
