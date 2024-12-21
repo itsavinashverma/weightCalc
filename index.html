@@ -78,7 +78,7 @@
         const calculateButtonContainer = document.querySelector('.calculate-button');
         const resultDiv = document.getElementById('result');
 
-        let inputCount = 1;
+        let inputCount = 0;
 
         addInputsButton.addEventListener('click', () => {
             inputCount++;
@@ -90,7 +90,7 @@
             `;
             inputsContainer.appendChild(inputGroup);
 
-            if (inputCount > 1) {
+            if (inputCount > 0) {
                 calculateButtonContainer.style.display = 'flex';
             }
         });
