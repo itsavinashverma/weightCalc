@@ -78,7 +78,7 @@
         const calculateButtonContainer = document.querySelector('.calculate-button');
         const resultDiv = document.getElementById('result');
 
-        let inputCount = 0;
+        let inputCount = 1;
 
         addInputsButton.addEventListener('click', () => {
             inputCount++;
@@ -96,24 +96,19 @@
         });
 
         calculateButton.addEventListener('click', () => {
-    const gramsInputs = document.querySelectorAll('.grams');
-    const packetsInputs = document.querySelectorAll('.packets');
-    let totalGrams = 0;
+            const gramsInputs = document.querySelectorAll('.grams');
+            const packetsInputs = document.querySelectorAll('.packets');
+            let totalGrams = 0;
 
-    gramsInputs.forEach(input => {
-        totalGrams += parseFloat(input.value) || 0;
-    });
+            gramsInputs.forEach((input, index) => {
+                const grams = parseFloat(input.value) || 0;
+                const packets = parseFloat(packetsInputs[index].value) || 0;
+                totalGrams += grams * packets; // Multiply grams by packets for each input
+            });
 
-    packetsInputs.forEach(input => {
-        const packets = parseFloat(input.value) || 0;
-        totalGrams += packets * 1000; // Correct multiplication without adding unintended value
-    });
-
-    const totalWeightKg = totalGrams / 1000;
-    resultDiv.textContent = `Total Weight: ${totalWeightKg.toFixed(2)} kg`;
-});
-
-        
+            const totalWeightKg = totalGrams / 1000; // Convert total grams to kg
+            resultDiv.textContent = `Total Weight: ${totalWeightKg.toFixed(2)} kg`; // Display total weight in kg
+        });
     </script>
     <script>
         if ('serviceWorker' in navigator) {
