@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            width: 45%;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .add-button {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .calculate-button {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="inputs-container">
+            <div class="input-group">
+                <input type="number" class="grams" placeholder="Grams">
+                <input type="number" class="packets" placeholder="Packets">
+            </div>
+        </div>
+        <div class="add-button">
+            <button id="add-inputs">+ Add More</button>
+        </div>
+        <div class="calculate-button">
+            <button id="calculate">Calculate Total Weight</button>
+        </div>
+        <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+    </div>
+
+    <script>
+        const inputsContainer = document.getElementById('inputs-container');
+        const addInputsButton = document.getElementById('add-inputs');
+        const calculateButton = document.getElementById('calculate');
+        const calculateButtonContainer = document.querySelector('.calculate-button');
+        const resultDiv = document.getElementById('result');
+
+        let inputCount = 1;
+
+        addInputsButton.addEventListener('click', () => {
+            inputCount++;
+            const inputGroup = document.createElement('div');
+            inputGroup.classList.add('input-group');
+            inputGroup.innerHTML = `
+                <input type="number" class="grams" placeholder="Grams">
+                <input type="number" class="packets" placeholder="Packets">
+            `;
+            inputsContainer.appendChild(inputGroup);
+
+            if (inputCount > 1) {
+                calculateButtonContainer.style.display = 'flex';
+            }
+        });
+
+        calculateButton.addEventListener('click', () => {
+            const gramsInputs = document.querySelectorAll('.grams');
+            const packetsInputs = document.querySelectorAll('.packets');
+            let totalGrams = 0;
+
+            gramsInputs.forEach(input => {
+                totalGrams += parseFloat(input.value) || 0;
+            });
+
+            packetsInputs.forEach(input => {
+                totalGrams += (parseFloat(input.value) || 0) * 1000;
+            });
+
+            const totalWeightKg = totalGrams / 1000;
+            resultDiv.textContent = `Total Weight: ${totalWeightKg.toFixed(2)} kg`;
+        });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js').then(() => {
+                console.log('Service Worker Registered');
+            });
+        }
+    </script>
+    
+</body>
+</html>
