@@ -1,20 +1,21 @@
 {
-    "name": "Weight Calculator",
-    "short_name": "WeightCalc",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "background_color": "#f0f4f8",
-    "theme_color": "#4F46E5",
-    "icons": [
-        {
-            "src": "icon-192x192.png",
-            "type": "image/png",
-            "sizes": "192x192"
-        },
-        {
-            "src": "icon-512x512.png",
-            "type": "image/png",
-            "sizes": "512x512"
-        }
-    ]
+  "name": "Weight Calculator",
+  "short_name": "WeightCalc",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0f4f8",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
 }
