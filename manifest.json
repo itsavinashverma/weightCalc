@@ -3,8 +3,8 @@
     "short_name": "WeightCalc",
     "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "#f9f9f9",
-    "theme_color": "#007BFF",
+    "background_color": "#f0f4f8",
+    "theme_color": "#4F46E5",
     "icons": [
         {
             "src": "icon-192x192.png",
